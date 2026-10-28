@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10172d">
+  <title>Smart Safety Navigator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Smart Safety Navigator home">
+        <span class="brand-icon">✦</span><span>Safety<span class="brand-light">Navigator</span></span>
+      </a>
+      <p class="nav-caption">WORKSPACE</p>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home"><span>▦</span> Overview</a>
+        <a class="nav-link" href="#route"><span>⌖</span> Safe routes</a>
+        <a class="nav-link" href="#reports"><span>◎</span> Community reports</a>
+        <a class="nav-link" href="#assistant"><span>✧</span> AI safety mode</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">✚</span>
+          <strong>Need urgent help?</strong>
+          <p>If you are in immediate danger, contact local emergency services.</p>
+          <a href="tel:112" class="small-emergency">Call India emergency: 112 ↗</a>
+        </div>
+        <div class="profile"><div class="avatar">SN</div><div><strong>Safety space</strong><small>Community dashboard</small></div><span class="profile-dots">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="home">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="top-actions"><span class="status-pill"><i></i> Safety hub online</span><div class="top-avatar">SN</div></div>
+      </header>
+
+      <section class="welcome-row">
+        <div><p class="eyebrow">YOUR PERSONAL SAFETY SPACE</p><h1>Navigate your world<br><span>with more confidence.</span></h1><p class="welcome-copy">Plan ahead, share useful information, and find practical safety guidance.</p></div>
+        <div class="welcome-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="art-shield">✓</div><div class="art-spark spark-one">✦</div><div class="art-spark spark-two">✧</div></div>
+      </section>
+
+      <section class="quick-grid" aria-label="Quick actions">
+        <article class="quick-card purple"><div class="quick-icon">⌖</div><div><span>PLAN AHEAD</span><h3>Safe route planner</h3><p>Prepare your journey.</p><a href="#route">Plan a route <b>↗</b></a></div><div class="card-decoration">⌁</div></article>
+        <article class="quick-card mint"><div class="quick-icon">◎</div><div><span>COMMUNITY</span><h3>Share a report</h3><p>Help others stay informed.</p><a href="#reports">Create report <b>↗</b></a></div><div class="card-decoration">✳</div></article>
+        <article class="quick-card peach"><div class="quick-icon">✧</div><div><span>SMART SUPPORT</span><h3>AI safety mode</h3><p>Get practical safety tips.</p><a href="#assistant">Open assistant <b>↗</b></a></div><div class="card-decoration">✦</div></article>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel route-panel" id="route">
+          <div class="panel-heading"><div><p class="eyebrow">JOURNEY PLANNER</p><h2>Plan your journey</h2></div><span class="panel-symbol">⌖</span></div>
+          <p class="muted">Enter your starting point and destination to prepare a journey plan.</p>
+          <form id="routeForm" class="stack-form">
+            <label>Starting point<input id="routeFrom" name="from" placeholder="e.g. College main gate" maxlength="120" required></label>
+            <label>Destination<input id="routeTo" name="to" placeholder="e.g. Central bus station" maxlength="120" required></label>
+            <label>Travel preference<select id="routePreference"><option value="daylight">Prefer well-lit, busy places</option><option value="public">Prefer public transport areas</option><option value="familiar">Prefer familiar routes</option></select></label>
+            <button class="primary-button" type="submit">Create journey plan <span>→</span></button>
+          </form>
+          <div id="routeResult" class="result-box hidden" aria-live="polite"></div>
+          <p class="fine-print">This starter planner provides general guidance; it does not verify live crime data or guarantee a route is safe.</p>
+        </div>
+
+        <div class="panel tips-panel">
+          <div class="panel-heading"><div><p class="eyebrow">SMALL STEPS, MORE PREPARED</p><h2>Safety checklist</h2></div><span class="panel-symbol green-symbol">✓</span></div>
+          <p class="muted">Tick items as you prepare for your journey.</p>
+          <div class="checklist" id="checklist">
+            <label class="check-row"><input type="checkbox"><span class="fake-check"></span><span><strong>Check your route</strong><small>Know your destination and alternatives.</small></span></label>
+            <label class="check-row"><input type="checkbox"><span class="fake-check"></span><span><strong>Keep your phone charged</strong><small>Carry a charger or power bank if possible.</small></span></label>
+            <label class="check-row"><input type="checkbox"><span class="fake-check"></span><span><strong>Tell someone you trust</strong><small>Share your plan when appropriate.</small></span></label>
+            <label class="check-row"><input type="checkbox"><span class="fake-check"></span><span><strong>Know emergency options</strong><small>Save relevant local emergency contacts.</small></span></label>
+          </div>
+          <div class="check-progress"><div class="progress-track"><div id="progressBar"></div></div><span id="progressText">0 of 4 complete</span></div>
+        </div>
+      </section>
+
+      <section class="content-grid lower-grid">
+        <div class="panel reports-panel" id="reports">
+          <div class="panel-heading"><div><p class="eyebrow">LOOK OUT FOR EACH OTHER</p><h2>Community safety reports</h2></div><span class="count-badge" id="reportCount">0 reports</span></div>
+          <p class="muted">Submit a non-emergency observation. Avoid including personal or identifying information.</p>
+          <form id="reportForm" class="stack-form">
+            <label>Area or public place<input id="reportArea" placeholder="e.g. Library road crossing" maxlength="120" required></label>
+            <label>Report category<select id="reportCategory"><option value="Lighting">Poor lighting</option><option value="Road hazard">Road hazard</option><option value="Crowding">Crowding</option><option value="Helpful resource">Helpful safety resource</option><option value="Other">Other observation</option></select></label>
+            <label>What should people know?<textarea id="reportDescription" rows="3" maxlength="1000" placeholder="Describe the public-area observation without personal details." required></textarea></label>
+            <button class="primary-button" type="submit">Submit report <span>→</span></button>
+          </form>
+          <div id="reportMessage" class="inline-message" aria-live="polite"></div>
+          <div id="reportsList" class="reports-list"><p class="empty-state">No reports yet. Community reports will appear here.</p></div>
+        </div>
+
+        <div class="panel assistant-panel" id="assistant">
+          <div class="assistant-heading"><div class="bot-icon">✧</div><div><p class="eyebrow">SMART SUPPORT</p><h2>AI safety mode</h2></div><span class="beta-badge">STARTER</span></div>
+          <div class="assistant-notice"><span>ⓘ</span><p>This demo uses a rule-based helper, not a connected AI model. It can offer general preparedness tips, but it cannot assess live danger.</p></div>
+          <div class="chat-window" id="chatWindow" aria-live="polite">
+            <div class="chat-message bot-message"><span class="chat-avatar">✧</span><div><strong>Safety assistant</strong><p>Hi! I can share general journey-preparation tips. What would you like help with?</p></div></div>
+          </div>
+          <div class="suggestions"><button type="button" class="suggestion">Journey checklist</button><button type="button" class="suggestion">Emergency preparation</button><button type="button" class="suggestion">Walking after dark</button></div>
+          <form id="chatForm" class="chat-form"><label class="sr-only" for="chatInput">Ask for safety guidance</label><input id="chatInput" placeholder="Ask for general safety tips..." maxlength="500" required><button aria-label="Send message" type="submit">↑</button></form>
+          <p class="fine-print">In an emergency, don't rely on this assistant. Move to a safer public place if possible and contact local emergency services.</p>
+        </div>
+      </section>
+
+      <footer><span>✦ Smart Safety Navigator</span><span>Stay aware. Plan ahead. Look out for one another.</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
